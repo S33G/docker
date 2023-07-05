@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+    nfs-server:
+        image: erichough/nfs-server
+        privileged: true
+        restart: always
+        cap_add:
+          - SYS_ADMIN
+        ports:
+            - 111:111
+            - 32765:32765
+            - 32767:32767
+            - 2049:2049
+        volumes:
+          - '/nfs-data:/nfs-data'
+          - './exports.txt:/etc/exports:ro'
+        environment:
+          NFS_LOG_LEVEL: DEBUG
+          PUID: 1000
+          PGID: 1000
