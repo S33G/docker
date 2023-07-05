@@ -1,0 +1,23 @@
+version: "3"
+services:
+  dns:
+    container_name: dns
+    image: jpillora/dnsmasq:1.1
+    ports:
+      - 53:53/udp
+      - 53:53/tcp
+      - 8053:8080
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+    expose:
+      - 53
+    command:
+      - --dns-forward-max=1024
+  exporter-dnsmasq:
+    container_name: exporter-dnsmasq
+    image: ricardbejarano/dnsmasq_exporter:1.4.4
+    ports:
+      - 9153:9153
