@@ -1,0 +1,58 @@
+# Global
+**/.env
+Makefile
+
+# Dnsmasq
+deemix/downloads/**
+deemix/config/logs/**
+deemix/config/queue/**
+deemix/config/spotify/**
+
+# Discord
+discord/**
+
+# dnsmasq
+
+# FiveM
+games/fivem/db/**
+games/fivem/config/**
+games/fivem/txData/**
+
+# Games
+games/rust/**
+games/satisfactory/**
+games/sons-of-the-forest/**
+games/minecraft/**
+games/valheim/**
+
+# Grafana
+grafana/grafana/**
+grafana/grafana_data/**
+grafana/idrac/exporter.yml
+grafana/prometheus/prometheus.yml
+grafana/prometheus_data/**
+
+# Homarr
+homarr/app/**
+homarr/configs/**
+
+# KMS
+kms/db/**
+
+# NFS
+nfs/exports.txt
+
+# syslog
+syslog/**
+
+# tailscale
+tailscale/**
+
+# Traefik
+traefik/logs/**
+traefik/portainer-data/**
+traefik/traefik-data/**
+traefik/traefik-data/
+
+# Uptime Kuma
+uptime-kuma/data/**
