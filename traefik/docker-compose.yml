@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  traefik:
+    image: traefik:2.10.3
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - proxy
+    command:
+      - --entryPoints.http.address=:80
+    env_file:
+      - .env
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:8080:8080
+      - 0.0.0.0:443:443
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik-data/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik-data/config.yml:/etc/traefik/config.yml:ro
+      - ./traefik-data/providers:/etc/traefik/providers
+      # - ./traefik-data/middleware.yml:/etc/traefik/middleware.yml:ro
+      - ./traefik-data/acme.json:/acme.json:ro
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    networks:
+      - proxy
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 9000:9000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data
+
+networks:
+  proxy:
+    external: true
