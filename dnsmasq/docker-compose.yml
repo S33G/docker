@@ -16,6 +16,11 @@ services:
       - 53
     command:
       - --dns-forward-max=1024
+    logging:
+        driver: json-file
+        options:
+            max-size: 50m
+
   exporter-dnsmasq:
     container_name: exporter-dnsmasq
     image: ricardbejarano/dnsmasq_exporter:1.4.4
