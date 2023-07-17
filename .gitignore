@@ -29,7 +29,6 @@ games/valheim/**
 grafana/grafana/**
 grafana/grafana_data/**
 grafana/idrac/exporter.yml
-grafana/prometheus/prometheus.yml
 grafana/prometheus_data/**
 
 # Homarr

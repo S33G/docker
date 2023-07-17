@@ -97,7 +97,7 @@ services:
   exporter-a2s-sotf:
     container_name: exporter-a2s-sotf
     ports:
-        - '9841:9841'
+        - 9841:9841
     image: armsnyder/a2s-exporter
     environment:
       A2S_EXPORTER_QUERY_ADDRESS: 192.168.0.75:27016
@@ -119,6 +119,15 @@ services:
   #     - 9324:8080
   #   environment:
   #     SERVERID: ${DISCORD_SERVER_ID}
+
+  exporter-unifi:
+    image: ghcr.io/unpoller/unpoller:latest
+    restart: unless-stopped
+    ports:
+      - 9130:9130
+    container_name: exporter-unifi
+    env_file:
+      - './unifi/.env'
 
 networks:
   proxy:
